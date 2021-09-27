@@ -1,0 +1,16 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Aman Tanrım!</h1>
+<h2 class="text-danger">Yine yolunda gitmeyen bir şeyler oldu.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>İstek Anahtarı:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<p>Her şey için çok geç olmadan önce lütfen bir yetkiliyi durumla ilgili bilgilendirin!</p>
