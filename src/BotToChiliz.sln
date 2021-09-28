@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotToChiliz.Hangfire", "Bot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotToChiliz.Domain", "BotToChiliz.Domain\BotToChiliz.Domain.csproj", "{92D30812-C1F4-4533-B2D5-C2B9EB174D6D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{2C66B9D7-CF69-4FCC-96A9-12D0AD51098F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

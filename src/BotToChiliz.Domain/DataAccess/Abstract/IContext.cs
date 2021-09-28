@@ -2,7 +2,7 @@
 
 namespace BotToChiliz.Domain.DataAccess.Abstract
 {
-    public interface IDbContext:IDisposable
+    public interface IContext:IDisposable
     {
         
     }

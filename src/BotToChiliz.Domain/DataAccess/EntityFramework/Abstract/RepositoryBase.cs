@@ -2,24 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using BotToChiliz.Domain.Data.Abstract;
 using BotToChiliz.Domain.DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 {
-    public class RepositoryBase<TContext, TEntity, T> : IRepository<TContext, TEntity, T>
-        where TContext : EfDbContext
-        where TEntity : EntityBase<T>
+    public class RepositoryBase<TContext, TType, TEntity> : IRepository<TContext, TType, TEntity>
+        where TContext : Context
+        where TEntity : EntityBase<TType>
     {
         #region Constants
-
-        private const int BulkOperationTreshold = 100;
-        private const string IsDeletedPropertyName = "IsDeleted";
+        
+        private const string IS_DELETED_PROPERTY_NAME = "IsDeleted";
 
         #endregion
 
@@ -41,10 +38,10 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 
         public void UseContext(TContext dbContext)
         {
-            Context = dbContext ?? throw new ArgumentNullException(nameof(dbContext), $@"'{nameof(dbContext)}' null olamaz!");
+            Context = dbContext ?? throw new ArgumentNullException(nameof(dbContext), $@"'{nameof(dbContext)}' can't be null!");
         }
 
-        public virtual async Task<TEntity> GetAsync(T id, CancellationToken cancellationToken, params string[] navigationProperties)
+        public virtual async Task<TEntity> GetAsync(TType id, CancellationToken cancellationToken, params string[] navigationProperties)
         {
             return await GetQueryable(p => p.Id.Equals(id), navigationProperties).SingleOrDefaultAsync(cancellationToken);
         }
@@ -140,22 +137,22 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 
             CheckContext();
 
-            List<TEntity> entityList = entities as List<TEntity> ?? entities.ToList();
+            var entityList = entities as List<TEntity> ?? entities.ToList();
 
             if (entityList.All(e => e == null))
                 return true;
 
             Context.Set<TEntity>().AddRange(entityList.Where(e => e != null));
-            await Context.SaveChangesAsync();
-            return true;
+            return await Task.Run(() => true, cancellationToken);
         }
 
         public virtual async Task<bool> UpdateAsync(TEntity entity)
         {
             CheckContext();
 
-            TEntity dbEntity = await Context.Set<TEntity>().FindAsync(entity.Id);
-            EntityEntry<TEntity> entry = Context.ChangeTracker.Entries<TEntity>().FirstOrDefault(e => e.Entity.Id.Equals(entity.Id) && e.State!=EntityState.Detached) ?? Context.Entry(dbEntity);
+            var dbEntity = await Context.Set<TEntity>().FindAsync(entity.Id);
+            var entry = Context.ChangeTracker.Entries<TEntity>()
+                .FirstOrDefault(e => e.Entity.Id.Equals(entity.Id) && e.State!=EntityState.Detached) ?? Context.Entry(dbEntity);
 
             entry.CurrentValues.SetValues(entity);
 
@@ -168,15 +165,15 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 
             CheckContext();
 
-            List<TEntity> entityList = entities as List<TEntity> ?? entities.ToList();
+            var entityList = entities as List<TEntity> ?? entities.ToList();
 
             if (entityList.All(e => e == null))
                 return true;
 
-            foreach (TEntity entity in entityList)
+            foreach (var entity in entityList)
             {
-                TEntity dbEntity = await Context.Set<TEntity>().FindAsync(entity.Id);
-                EntityEntry<TEntity> entry = Context.ChangeTracker.Entries<TEntity>().FirstOrDefault(e => e.Entity.Id.Equals(entity.Id)) ?? Context.Entry(dbEntity);
+                var dbEntity = await Context.Set<TEntity>().FindAsync(entity.Id);
+                var entry = Context.ChangeTracker.Entries<TEntity>().FirstOrDefault(e => e.Entity.Id.Equals(entity.Id)) ?? Context.Entry(dbEntity);
 
                 entry.CurrentValues.SetValues(entity);
                 entry.State = EntityState.Modified;
@@ -189,7 +186,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
         {
             CheckContext();
 
-            TEntity dbEntity = await Context.FindAsync<TEntity>(new object[] { entity.Id }, cancellationToken);
+            var dbEntity = await Context.FindAsync<TEntity>(new object[] { entity.Id }, cancellationToken);
 
             if (dbEntity == null)
                 Context.Set<TEntity>().Add(entity);
@@ -204,14 +201,14 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 
             CheckContext();
 
-            TEntity entity = await Context.Set<TEntity>().FindAsync(keyValues, cancellationToken);
+            var entity = await Context.Set<TEntity>().FindAsync(keyValues, cancellationToken);
 
             return await DeleteAsync(entity);
         }
 
         public virtual async Task<bool> DeleteAsync(TEntity entity)
         {
-            PropertyInfo propertyInfo = typeof(TEntity).GetProperty(IsDeletedPropertyName);
+            var propertyInfo = typeof(TEntity).GetProperty(IS_DELETED_PROPERTY_NAME);
 
             if (propertyInfo != null)
             {
@@ -221,28 +218,28 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 
             CheckContext();
 
-            DbSet<TEntity> dbSet = Context.Set<TEntity>();
+            var dbSet = Context.Set<TEntity>();
 
             if (Context.Entry(entity).State == EntityState.Detached)
                 dbSet.Attach(entity);
 
             dbSet.Remove(entity);
-            return true;
+            return await Task.Run(() => true);
         }
 
         public virtual async Task<bool> DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
         {
-            List<TEntity> entityList = entities as List<TEntity> ?? entities.ToList();
+            var entityList = entities as List<TEntity> ?? entities.ToList();
 
             if (entityList.All(e => e == null))
                 return true;
 
             CheckContext();
 
-            DbSet<TEntity> dbSet = Context.Set<TEntity>();
-            PropertyInfo propertyInfo = typeof(TEntity).GetProperty(IsDeletedPropertyName);
+            var dbSet = Context.Set<TEntity>();
+            var propertyInfo = typeof(TEntity).GetProperty(IS_DELETED_PROPERTY_NAME);
 
-            foreach (TEntity entity in entityList)
+            foreach (var entity in entityList)
             {
                 if (propertyInfo != null)
                 {
@@ -262,7 +259,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
                 }
             }
 
-            return true;
+            return await Task.Run(() => true, cancellationToken);
         }
 
         #endregion
@@ -290,7 +287,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
         #endregion
 
 
-        protected virtual IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> filter, string[] navigationProperties)
+        public virtual IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> filter, string[] navigationProperties)
         {
             CheckContext();
             IQueryable<TEntity> query = Context.Set<TEntity>();
@@ -299,14 +296,14 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
                 query = query.Where(filter);
 
             if (navigationProperties != null && navigationProperties.Any())
-                foreach (string navigationProperty in navigationProperties)
-                    if (!String.IsNullOrWhiteSpace(navigationProperty))
+                foreach (var navigationProperty in navigationProperties)
+                    if (!string.IsNullOrWhiteSpace(navigationProperty))
                         query = query.Include(navigationProperty);
 
             return query.AsNoTracking();
         }
 
-        protected virtual IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, int? skip, int? take,
+        public virtual IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, int? skip, int? take,
             string[] navigationProperties)
         {
             CheckContext();
@@ -320,8 +317,8 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
                 query = orderBy(query);
 
             if (navigationProperties != null && navigationProperties.Any())
-                foreach (string navigationProperty in navigationProperties)
-                    if (!String.IsNullOrWhiteSpace(navigationProperty))
+                foreach (var navigationProperty in navigationProperties)
+                    if (!string.IsNullOrWhiteSpace(navigationProperty))
                         query = query.Include(navigationProperty);
 
             if (skip.HasValue)
@@ -333,10 +330,10 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
             return query.AsNoTracking();
         }
 
-        protected void CheckContext()
+        private void CheckContext()
         {
             if (Context == null)
-                throw new Exception($"{nameof(Context)} cannot be null!");
+                throw new Exception($"{nameof(Context)} can't be null!");
         }
 
         #endregion

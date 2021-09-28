@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace BotToChiliz.Domain.DataAccess.Abstract
 {
-    public interface IRepository<in TContext, TEntity, T> : IDisposable
-        where TContext : IDbContext
-        where TEntity : IEntity<T>
+    public interface IRepository<in TContext,in TType, TEntity> : IDisposable
+        where TContext : IContext
+        where TEntity : IEntity<TType>
     {
         #region Methods
 
         void UseContext(TContext dbContext);
 
-        Task<TEntity> GetAsync(T id, CancellationToken cancellationToken, params string[] navigationProperties);
+        Task<TEntity> GetAsync(TType id, CancellationToken cancellationToken, params string[] navigationProperties);
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken, params string[] navigationProperties);
 
         Task<int> GetCountAsync(CancellationToken cancellationToken);

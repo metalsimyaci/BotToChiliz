@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 {
     public class UnitOfWorkBase<TContext> : IUnitOfWork
-    where TContext : EfDbContext
+    where TContext : Context
     {
         #region Variables
 

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract
 {
-    public abstract class EfDbContext:DbContext,IDbContext
+    public abstract class Context:DbContext,IContext
     {
-        protected EfDbContext(DbContextOptions options):base(options)
+        protected Context(DbContextOptions options):base(options)
         {
             
         }

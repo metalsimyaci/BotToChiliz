@@ -8,7 +8,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Abstract.Configuration
     {
         protected virtual void ConfigureAudit(EntityTypeBuilder<TEntity> builder)
         {
-            object p = builder.Property(p => p.CreationTime).ValueGeneratedOnAdd().IsRequired().HasValueGenerator<DateTimeValueGenerator>(); ;
+            builder.Property(p => p.CreationTime).ValueGeneratedOnAdd().IsRequired().HasValueGenerator<DateTimeValueGenerator>(); ;
             builder.Property(p => p.CreatedBy).IsRequired().HasMaxLength(Constants.CreatedByMaxLength);
 
             builder.Property(p => p.ModificationTime).ValueGeneratedOnUpdate().IsRequired(false).HasValueGenerator<DateTimeValueGenerator>();

@@ -7,11 +7,9 @@ namespace BotToChiliz.Domain.Data.Entity
     public class Worker:FullAuditedBase<int>
     {
         public int CurrencyId { get; set; }
-
-        public string WorkerName { get; set; }
+        public string Name { get; set; }
         public WorkerType Type { get; set; }
         public WorkerStatuses Status { get; set; }
-
         public double Quantity { get; set; }
         
         public int Timeout { get; set; }

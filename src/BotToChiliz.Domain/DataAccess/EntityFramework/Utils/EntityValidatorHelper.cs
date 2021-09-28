@@ -15,7 +15,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Utils
         }
         public static void AuditedValidator<T>(AuditedBase<T> entity, CheckProgressType progressType)
         {
-            CheckBase<T>(entity, progressType);
+            CheckBase(entity, progressType);
             CheckAuditBase(entity, progressType);
         }
         public static void EntityValidator<T>(EntityBase<T> entity, CheckProgressType progressType)

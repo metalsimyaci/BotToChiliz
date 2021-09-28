@@ -12,9 +12,9 @@ namespace BotToChiliz.Domain.DependencyInjection.Extension
             if (services == null)
                 throw new ArgumentNullException(nameof(services));
 
-            DependencyBuilder builder = new DependencyBuilder(services);
+            var builder = new DependencyBuilder(services);
             services.AddOptions();
-            services.AddSingleton(typeof(IDependencyContext), s => builder.Context);
+            services.AddSingleton(typeof(IDependencyContext), _ => builder.Context);
 
             return builder;
         }

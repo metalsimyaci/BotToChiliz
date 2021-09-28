@@ -41,7 +41,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Context
                     CurrencyId = 1,
 
                     Type = WorkerType.BuyBot,
-                    WorkerName = "TRA_BUYYER",
+                    Name = "TRA_BUYYER",
                     Status = WorkerStatuses.Wait,
                     Quantity = 10,
 
@@ -61,7 +61,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Context
                     CurrencyId = 1,
 
                     Type = WorkerType.SellBot,
-                    WorkerName = "TRA_SELLER",
+                    Name = "TRA_SELLER",
                     Status = WorkerStatuses.Wait,
                     Quantity = 10,
 
@@ -81,7 +81,7 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Context
                     CurrencyId = 1,
 
                     Type = WorkerType.RateBot,
-                    WorkerName = "TRA_EXCHANGER",
+                    Name = "TRA_EXCHANGER",
                     Status = WorkerStatuses.Wait,
                     Quantity = -1,
 

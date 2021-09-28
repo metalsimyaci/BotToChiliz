@@ -1,10 +1,9 @@
-﻿using System;
-using BotToChiliz.Domain.Data.Abstract;
+﻿using BotToChiliz.Domain.Data.Abstract.Audited;
 using BotToChiliz.Domain.Data.Enumeration;
 
 namespace BotToChiliz.Domain.Data.Entity
 {
-    public class WorkerOrder : EntityBase<int>
+    public class WorkerOrder : CreationAuditedBase<int>
     {
         public int WorkerId { get; set; }
         public string Key { get; set; }
@@ -12,7 +11,6 @@ namespace BotToChiliz.Domain.Data.Entity
         public OrderStatuses Status { get; set; }
         public double Quantity { get; set; }
         public double Price { get; set; }
-        public DateTime CreateDate { get; set; }
 
         public Worker Worker { get; set; }
     }

@@ -1,7 +1,10 @@
 using BotToChiliz.Domain.Data.Entity;
+using BotToChiliz.Domain.Data.Enumeration;
 using BotToChiliz.Domain.DataAccess.EntityFramework.Abstract.Configuration;
+using BotToChiliz.Domain.DataAccess.EntityFramework.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BotToChiliz.Domain.DataAccess.EntityFramework.Configuration
 {
@@ -9,11 +12,11 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Configuration
     {
         public void Configure(EntityTypeBuilder<CurrencyBalance> builder)
         {
-            builder.ToTable("CurrencyBalances", Constants.DB_SCHEME_NAME);
+            builder.ToTable("CurrencyBalances", Constants.SCHEME_NAME);
             builder.HasKey(k => k.Id);
 
             builder.Property(p => p.CurrencyId).IsRequired();
-            builder.Property(p => p.Type).IsRequired();
+            builder.Property(p => p.Type).IsRequired().HasConversion<EnumToStringConverter<BalanceTypes>>();
             builder.Property(p => p.Balance).IsRequired();
 
             base.ConfigureAudit(builder);
