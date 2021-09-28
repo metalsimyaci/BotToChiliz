@@ -16,8 +16,6 @@ namespace BotToChiliz.Hangfire
 {
     public class Startup
     {
-        private const string FIREBASE_URL = "https://bottochiliz-default-rtdb.europe-west1.firebasedatabase.app/";
-        private const string FIREBASE_SECRET = "2GvpsrdTgqBlst9GRoXOS53LV6teX0Y67PDZyFdx";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,17 +27,17 @@ namespace BotToChiliz.Hangfire
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            var firebaseOptions = new FirebaseStorageOptions
-            {
-                Queues = new[] { "default", "critical" },
-                RequestTimeout = System.TimeSpan.FromSeconds(30),
-                ExpirationCheckInterval = TimeSpan.FromMinutes(15),
-                CountersAggregateInterval = TimeSpan.FromMinutes(1),
-                QueuePollInterval = TimeSpan.FromSeconds(2)
-            };
-            services.AddHangfire(c => c.UseFirebaseStorage(FIREBASE_URL, FIREBASE_SECRET,firebaseOptions));
-            var firebaseStorage = new FirebaseStorage(FIREBASE_URL, FIREBASE_SECRET, firebaseOptions);
-            GlobalConfiguration.Configuration.UseStorage(firebaseStorage);
+            //var firebaseOptions = new FirebaseStorageOptions
+            //{
+            //    Queues = new[] { "default", "critical" },
+            //    RequestTimeout = System.TimeSpan.FromSeconds(30),
+            //    ExpirationCheckInterval = TimeSpan.FromMinutes(15),
+            //    CountersAggregateInterval = TimeSpan.FromMinutes(1),
+            //    QueuePollInterval = TimeSpan.FromSeconds(2)
+            //};
+            //services.AddHangfire(c => c.UseFirebaseStorage(FIREBASE_URL, FIREBASE_SECRET,firebaseOptions));
+            //var firebaseStorage = new FirebaseStorage(FIREBASE_URL, FIREBASE_SECRET, firebaseOptions);
+            //GlobalConfiguration.Configuration.UseStorage(firebaseStorage);
             services.AddHangfireServer();
         }
 
