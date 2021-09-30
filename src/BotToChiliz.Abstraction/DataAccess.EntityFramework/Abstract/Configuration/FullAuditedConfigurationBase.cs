@@ -1,4 +1,4 @@
-using BotToChiliz.Abstraction.Data.Abstract.Audited;
+using BotToChiliz.Abstraction.Data.Audited;
 using BotToChiliz.Abstraction.DataAccess.EntityFramework.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

@@ -1,4 +1,4 @@
-namespace BotToChiliz.Abstraction.Data.Abstract
+namespace BotToChiliz.Abstraction.Data
 {
     public interface IEntity<T>
     {

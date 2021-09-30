@@ -1,6 +1,6 @@
 using System;
 
-namespace BotToChiliz.Abstraction.Data.Abstract.Audited
+namespace BotToChiliz.Abstraction.Data.Audited
 {
     public class AuditedBase<T>:EntityBase<T>,IAudited
     {

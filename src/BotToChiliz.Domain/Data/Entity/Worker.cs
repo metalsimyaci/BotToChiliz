@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using BotToChiliz.Abstraction.Data.Abstract.Audited;
+using BotToChiliz.Abstraction.Data.Audited;
 using BotToChiliz.Domain.Data.Enumeration;
 
 namespace BotToChiliz.Domain.Data.Entity

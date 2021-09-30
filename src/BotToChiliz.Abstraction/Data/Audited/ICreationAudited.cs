@@ -1,4 +1,4 @@
-﻿namespace BotToChiliz.Abstraction.Data.Abstract.Audited
+﻿namespace BotToChiliz.Abstraction.Data.Audited
 {
     public interface ICreationAudited:IHasCreationTime
     {

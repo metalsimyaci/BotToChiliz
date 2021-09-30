@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
-using BotToChiliz.Abstraction.DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
 
 namespace BotToChiliz.Abstraction.DataAccess.EntityFramework.Abstract

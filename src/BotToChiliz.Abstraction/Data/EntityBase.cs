@@ -1,4 +1,4 @@
-namespace BotToChiliz.Abstraction.Data.Abstract
+namespace BotToChiliz.Abstraction.Data
 {
     public abstract class EntityBase<T>:IEntity<T>
     {

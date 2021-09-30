@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BotToChiliz.Abstraction.DataAccess.Abstract
+namespace BotToChiliz.Abstraction.DataAccess
 {
     internal interface IUnitOfWork : IDisposable
     {

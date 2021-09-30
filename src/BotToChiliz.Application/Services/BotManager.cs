@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using BotToChiliz.Abstraction.DependencyInjection.Abstract;
-using BotToChiliz.Abstraction.Service.Abstract;
+using BotToChiliz.Abstraction.Service;
 using BotToChiliz.Domain.Data.Enumeration;
 using BotToChiliz.Domain.DataAccess.EntityFramework.UnitOfWork;
 using BotToChiliz.Domain.Models;

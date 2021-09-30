@@ -1,7 +1,7 @@
 using System;
 using BotToChiliz.Abstraction.DependencyInjection.Abstract;
 
-namespace BotToChiliz.Abstraction.Service.Abstract
+namespace BotToChiliz.Abstraction.Service
 {
     public abstract class ManagerBase:IManager,IDisposable
     {

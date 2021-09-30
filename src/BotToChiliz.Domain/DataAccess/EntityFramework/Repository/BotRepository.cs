@@ -1,4 +1,4 @@
-using BotToChiliz.Abstraction.Data.Abstract;
+using BotToChiliz.Abstraction.Data;
 using BotToChiliz.Abstraction.DataAccess.EntityFramework.Abstract;
 using BotToChiliz.Domain.DataAccess.EntityFramework.Context;
 

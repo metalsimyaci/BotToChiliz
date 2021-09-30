@@ -4,8 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using BotToChiliz.Abstraction.Data.Abstract;
-using BotToChiliz.Abstraction.DataAccess.Abstract;
+using BotToChiliz.Abstraction.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BotToChiliz.Abstraction.DataAccess.EntityFramework.Abstract

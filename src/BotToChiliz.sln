@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotToChiliz.Service", "BotToChiliz.Service\BotToChiliz.Service.csproj", "{39EB6DBE-6176-46E3-9370-F1E5F5A158DF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotToChiliz.Hangfire", "BotToChiliz.Hangfire\BotToChiliz.Hangfire.csproj", "{BA36C286-25EE-4593-964E-7AA179768627}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotToChiliz.Domain", "BotToChiliz.Domain\BotToChiliz.Domain.csproj", "{92D30812-C1F4-4533-B2D5-C2B9EB174D6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotToChiliz.Application", "BotToChiliz.Application\BotToChiliz.Application.csproj", "{19185D42-0E61-4A30-87EB-35C989137AFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotToChiliz.Application", "BotToChiliz.Application\BotToChiliz.Application.csproj", "{19185D42-0E61-4A30-87EB-35C989137AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotToChiliz.Abstraction", "BotToChiliz.Abstraction\BotToChiliz.Abstraction.csproj", "{33DDBB5B-53C3-4CCB-AE0F-0F496D0D6B75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotToChiliz.Abstraction", "BotToChiliz.Abstraction\BotToChiliz.Abstraction.csproj", "{33DDBB5B-53C3-4CCB-AE0F-0F496D0D6B75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotToChiliz.Infrastructure", "BotToChiliz.Infrastructure\BotToChiliz.Infrastructure.csproj", "{EAA6B199-0B2F-4310-B2A8-FC465465D7AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39EB6DBE-6176-46E3-9370-F1E5F5A158DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39EB6DBE-6176-46E3-9370-F1E5F5A158DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39EB6DBE-6176-46E3-9370-F1E5F5A158DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39EB6DBE-6176-46E3-9370-F1E5F5A158DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA36C286-25EE-4593-964E-7AA179768627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA36C286-25EE-4593-964E-7AA179768627}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA36C286-25EE-4593-964E-7AA179768627}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{33DDBB5B-53C3-4CCB-AE0F-0F496D0D6B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33DDBB5B-53C3-4CCB-AE0F-0F496D0D6B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33DDBB5B-53C3-4CCB-AE0F-0F496D0D6B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAA6B199-0B2F-4310-B2A8-FC465465D7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA6B199-0B2F-4310-B2A8-FC465465D7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA6B199-0B2F-4310-B2A8-FC465465D7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA6B199-0B2F-4310-B2A8-FC465465D7AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

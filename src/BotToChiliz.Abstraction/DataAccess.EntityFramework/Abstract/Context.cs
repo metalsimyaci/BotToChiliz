@@ -1,4 +1,3 @@
-using BotToChiliz.Abstraction.DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
 
 namespace BotToChiliz.Abstraction.DataAccess.EntityFramework.Abstract

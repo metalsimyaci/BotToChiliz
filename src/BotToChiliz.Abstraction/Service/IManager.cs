@@ -1,4 +1,4 @@
-namespace BotToChiliz.Abstraction.Service.Abstract
+namespace BotToChiliz.Abstraction.Service
 {
     public interface IManager
     {
