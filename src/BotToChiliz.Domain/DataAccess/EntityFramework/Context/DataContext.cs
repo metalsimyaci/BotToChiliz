@@ -1,11 +1,10 @@
 using BotToChiliz.Domain.Data.Entity;
-using BotToChiliz.Domain.DataAccess.EntityFramework.Abstract;
 using BotToChiliz.Domain.DataAccess.EntityFramework.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace BotToChiliz.Domain.DataAccess.EntityFramework.Context
 {
-    public class DataContext : Abstract.Context
+    public class DataContext : Abstraction.DataAccess.EntityFramework.Abstract.Context
     {
         #region Properties
 

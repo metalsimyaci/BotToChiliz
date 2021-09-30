@@ -1,6 +1,6 @@
+using BotToChiliz.Abstraction.DataAccess.EntityFramework.Abstract.Configuration;
 using BotToChiliz.Domain.Data.Entity;
 using BotToChiliz.Domain.Data.Enumeration;
-using BotToChiliz.Domain.DataAccess.EntityFramework.Abstract.Configuration;
 using BotToChiliz.Domain.DataAccess.EntityFramework.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using BotToChiliz.Domain.Data.Abstract;
-using BotToChiliz.Domain.Data.Abstract.Audited;
+using BotToChiliz.Abstraction.Data.Abstract;
+using BotToChiliz.Abstraction.Data.Abstract.Audited;
+
 
 namespace BotToChiliz.Domain.Data.Entity
 {

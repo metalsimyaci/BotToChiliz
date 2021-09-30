@@ -2,10 +2,6 @@ namespace BotToChiliz.Domain.DataAccess.EntityFramework.Utils
 {
     internal record Constants
     {
-        public const int CreatedByMaxLength = 256;
-        public const int ModifiedByMaxLength = 256;
-        public const int DeletedByMaxLength = 256;
-        
         public const string SCHEME_NAME = "BotToChilizApp";
         
         public const int CURRENCY_CODE_MAX_LENGTH = 16;

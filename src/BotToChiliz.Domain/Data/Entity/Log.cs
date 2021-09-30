@@ -1,5 +1,5 @@
 using System;
-using BotToChiliz.Domain.Data.Abstract;
+using BotToChiliz.Abstraction.Data.Abstract;
 
 namespace BotToChiliz.Domain.Data.Entity
 {

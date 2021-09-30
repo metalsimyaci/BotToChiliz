@@ -1,4 +1,4 @@
-﻿using BotToChiliz.Domain.Data.Abstract.Audited;
+using BotToChiliz.Abstraction.Data.Abstract.Audited;
 using BotToChiliz.Domain.Data.Enumeration;
 
 namespace BotToChiliz.Domain.Data.Entity
