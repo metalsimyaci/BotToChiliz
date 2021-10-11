@@ -30,12 +30,12 @@ namespace BotToChiliz.Infrastructure.Adapter.Concreate
                 return a.Data;
             return null;
         }
-        public async Task<IEnumerable<ChilizOrder>> GetOrdersAsync(string symbol, CancellationToken cancellationToken)
+        public async Task<ChilizAccountInfo> GetAccountInfo(CancellationToken cancellationToken)
         {
             _client.SetApiCredentials(_config.ApiKey,_config.SecretKey);
-            var a = await _client.getor(symbol, ct: cancellationToken, receiveWindow: 5000);
-            if(a.Success)
-                return a.Data;
+            var accountInfo = await _client.GetAccountInfoAsync(null, cancellationToken);
+            if(accountInfo.Success)
+                return accountInfo.Data;
             return null;
         }
     }
