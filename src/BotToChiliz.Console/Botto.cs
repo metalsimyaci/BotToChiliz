@@ -11,26 +11,27 @@ namespace BotToChiliz.Console
     {
         #region Properties
 
-        private IConfiguration _configuration;
+        public IConfiguration _configuration;
         protected internal IServiceProvider _serviceProvider;
 
         #endregion
         
-        public void GetConfiguration()
+        private void GetConfiguration()
         {
             _configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddUserSecrets(Assembly.GetExecutingAssembly(),optional:true,reloadOnChange:true)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddUserSecrets(Assembly.GetExecutingAssembly(),optional:true,reloadOnChange:true)
                 .AddEnvironmentVariables()
                 .Build();
         }
 
         public void SetServices()
         {
+            GetConfiguration();
             var services = new ServiceCollection();
-            services.AddTransient<IConfiguration>(s => _configuration);
-            services.AddInfrastructure(_configuration);
+            services.AddSingleton(_=>_configuration);
+            services.AddInfrastructure();
             _serviceProvider = services.BuildServiceProvider();
         }
     }

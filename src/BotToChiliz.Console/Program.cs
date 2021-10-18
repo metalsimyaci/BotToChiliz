@@ -15,7 +15,6 @@ namespace BotToChiliz.Console
             try
             {
                 var botto = new Botto();
-                botto.GetConfiguration();
                 botto.SetServices();
 
                 var client = botto._serviceProvider.GetRequiredService<IChilizNetAdapter>();
