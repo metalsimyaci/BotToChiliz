@@ -1,6 +1,6 @@
 using BotToChiliz.Infrastructure.Adapter.Abstract;
 using BotToChiliz.Infrastructure.Adapter.Concreate;
-using BotToChiliz.Infrastructure.Adapter.Configuration;
+using BotToChiliz.Infrastructure.Configuration;
 using Chiliz.Net;
 using Chiliz.Net.Interfaces;
 using CryptoExchange.Net.Authentication;
@@ -17,13 +17,13 @@ namespace BotToChiliz.Infrastructure.Extension
             var _configuration = services.BuildServiceProvider().GetService<IConfiguration>();
             services.AddOptions<ChilizClientConfiguration>();
             services.Configure<ChilizClientConfiguration>(_configuration.GetSection(nameof(ChilizClientConfiguration)));
-            services.AddTransient<IChilizClient>(s =>
+            services.AddSingleton<IChilizClient>(s =>
             {
                 var options = s.GetService<IOptions<ChilizClientConfiguration>>().Value;
                 return new ChilizClient(new ChilizClientOptions()
                 {
                     BaseAddress = options.BaseAddress,
-                    //ApiCredentials = new ApiCredentials(options.ApiKey,options.SecretKey)
+                    ApiCredentials = new ApiCredentials(options.ApiKey,options.SecretKey)
                 });
             });
             services.AddTransient<IChilizNetAdapter, ChilizNetAdapter>();

@@ -1,4 +1,4 @@
-namespace BotToChiliz.Infrastructure.Adapter.Configuration
+namespace BotToChiliz.Infrastructure.Configuration
 {
     public class ChilizClientConfiguration
     {
